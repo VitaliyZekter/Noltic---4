@@ -1,0 +1,24 @@
+<template>
+    <lightning-card title='Buy ticket'>
+        <div class="slds-m-around_large">
+            <template if:true={discount.data}>
+                <ul>
+                    <template for:each={discount.data} for:item='d'>
+                        <li key={d.Id}>
+                            <p class="slds-m-bottom_medium">Your personal discount: {d.Discount__c}%</p>
+                        </li>
+                    </template>
+                </ul>
+            </template>
+
+            <lightning-button label='Choose ticket' onclick={showFormValue}></lightning-button>
+        </div>
+        <template if:true={showForm}>
+            <div class="slds-m-around_large">
+                <lightning-input label='From-To(Madrid-London)' data-name = 'reset' onchange={getTicketNameValue}></lightning-input>
+                <lightning-input label='Enter ticket class(Business or Economy)' data-name = 'reset1' onchange={getTicketType}></lightning-input>
+                <lightning-button label="Buy" onclick={createNewTicket}></lightning-button>
+            </div>
+        </template>
+    </lightning-card>
+</template>
