@@ -1,0 +1,28 @@
+<template>
+    <lightning-card title="Write a review">
+        <div class='slds-m-around_medium'>
+            <lightning-button label='Create new review' onclick={showForm}></lightning-button>
+        </div>
+
+        <template if:true={showFormValue}>
+            <div class='slds-m-around_medium'>
+                <lightning-input label='Title' data-name = 'reset1' onchange={noteOnChangeTitle}></lightning-input>
+            <lightning-input label='Write something' data-name = 'reset' onchange={noteOnChange}></lightning-input>
+            <lightning-button label='Add review' onclick={createNewNote}></lightning-button>
+            </div>
+        </template>
+        <template if:true={dairies.data}>
+            <div class='slds-m-bottom_xx-large'>
+                <ul class='slds-m-around_medium '>
+                    <template for:each={dairies.data} for:item='d'>
+                        <li key={d.Id}>
+                            <c-diary-child dairies={d}></c-diary-child>
+                            <lightning-button label='Delete' onclick={deleteNote} data-recordid={d.Id}></lightning-button>
+                            <div class='slds-m-bottom_xx-large'></div>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+        </template>
+    </lightning-card>
+</template>
